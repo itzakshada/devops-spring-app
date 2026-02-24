@@ -36,8 +36,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           mvn -B sonar:sonar \
-            -Dsonar.projectKey=YOUR_PROJECT_KEY \
-            -Dsonar.organization=YOUR_ORG_KEY \
+            -Dsonar.projectKey=itzakshada_devops-spring-app \
+            -Dsonar.organization=itzakshada \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=$SONAR_TOKEN \
             -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
@@ -45,9 +45,9 @@ jobs:
       - name: Login to ACR
         uses: docker/login-action@v3
         with:
-          registry: ${{ secrets.ACR_LOGIN_SERVER }}
-          username: ${{ secrets.ACR_USERNAME }}
-          password: ${{ secrets.ACR_PASSWORD }}
+          registry: ${{ secrets.petclinic.azurecr.io }}
+          username: ${{ secrets.petclinic }}
+          password: ${{ secrets.6cKiwPM6ULCjldb5E0B55WvmHxXAVosyhOE1oKPqGe7uNyuakIGOJQQJ99CBACGhslBEqg7NAAACAZCRPgHi }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
