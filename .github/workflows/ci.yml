@@ -13,7 +13,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # recommended for Sonar features
+          fetch-depth: 0
 
       - name: Setup Java
         uses: actions/setup-java@v3
@@ -32,10 +32,12 @@ jobs:
           if-no-files-found: error
 
       - name: Sonar Scan (SonarCloud)
-        run: mvn -B sonar:sonar \
-          -Dsonar.projectKey=<key_project> \
-          -Dsonar.organization=<org_name> \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-          -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
-
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          mvn -B sonar:sonar \
+            -Dsonar.projectKey=itzakshada_devops-spring-app \
+            -Dsonar.organization=itzakshada \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=$SONAR_TOKEN \
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
