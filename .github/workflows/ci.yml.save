@@ -30,9 +30,9 @@ jobs:
           if-no-files-found: error
 
      - name: Sonar Scan
-       run: mvn sonar:sonar \
-          -Dsonar.projectKey=<key_project> \
-          -Dsonar.organization=<org_name> \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+       run: mvn verify sonar:sonar \
+        -Dsonar.projectKey=your_key \
+        -Dsonar.organization=your_org \
+        -Dsonar.host.url=https://sonarcloud.io \
+        -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
