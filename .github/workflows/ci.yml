@@ -24,6 +24,10 @@ jobs:
       - name: Build + Test (JaCoCo)
         run: mvn -B clean test
 
+      # ✅ ADD THIS STEP (creates target/*.jar)
+      - name: Package JAR (no tests)
+        run: mvn -B -DskipTests package
+
       - name: Upload JaCoCo HTML report
         uses: actions/upload-artifact@v4
         with:
