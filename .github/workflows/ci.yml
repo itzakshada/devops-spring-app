@@ -6,50 +6,6 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Build + Test (generates JaCoCo report)
-        run: mvn -B clean test
-
-      - name: Upload JaCoCo HTML report
-        uses: actions/upload-artifact@v4
-        with:
-          name: jacoco-report
-          path: target/site/jacoco/
-          if-no-files-found: error
-
-      - name: Sonar Scan (SonarCloud)
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          mvn -B sonar:sonar \
-            -Dsonar.projectKey=itzakshada_devops-spring-app \
-            -Dsonar.organization=itzakshada \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=$SONAR_TOKEN \
-            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
-
-      name: CI Pipeline
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
   build-test-scan-docker:
     runs-on: ubuntu-latest
 
