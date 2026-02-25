@@ -58,7 +58,7 @@ jobs:
 
       # -------- DEPLOYMENT STARTS HERE --------
       - name: Deploy to Azure VM
-        uses: appleboy/ssh-action@4.188.82.126
+        uses: appleboy/ssh-action@main
         with:
           host: ${{ secrets.VM_HOST }}
           username: ${{ secrets.VM_USER }}
