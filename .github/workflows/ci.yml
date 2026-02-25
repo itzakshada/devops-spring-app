@@ -65,4 +65,3 @@ jobs:
           tags: |
             ${{ secrets.ACR_LOGIN_SERVER }}/rest-service-app:latest
             ${{ secrets.ACR_LOGIN_SERVER }}/rest-service-app:${{ github.sha }}
-
