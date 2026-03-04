@@ -45,8 +45,9 @@ jobs:
             -Dsonar.login=$SONAR_TOKEN \
             -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 
-      - name: Run OWASP Dependnecy Check
-        run: mvn org:owasp:dependency-check-maven:check
+      - name: Run OWASP Dependency Check
+        run: mvn -U dependency-check:check
+
 
       - name: Login to ACR
         uses: docker/login-action@v3
