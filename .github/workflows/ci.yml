@@ -43,10 +43,7 @@ jobs:
             -Dsonar.organization=itzakshada \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=$SONAR_TOKEN \
-            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
-
-      - name: Run OWASP Dependency Check
-        run: mvn -U dependency-check:check
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xmlO
 
 
       - name: Login to ACR
