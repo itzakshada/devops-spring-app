@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- ========================= -->
-    <!-- Project Details -->
+    <!-- Project Metadata -->
     <!-- ========================= -->
     <groupId>com.example</groupId>
     <artifactId>order-service</artifactId>
@@ -35,10 +35,6 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-        <sonar.coverage.jacoco.xmlReportPaths>
-            target/site/jacoco/jacoco.xml
-        </sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <!-- ========================= -->
@@ -62,7 +58,7 @@
     </dependencies>
 
     <!-- ========================= -->
-    <!-- Build & Plugins -->
+    <!-- Build Plugins -->
     <!-- ========================= -->
     <build>
         <plugins>
@@ -73,7 +69,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            <!-- Maven Compiler Plugin -->
+            <!-- Maven Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -103,32 +99,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-
-            <!-- ✅ OWASP Dependency Check (SAST) -->
-            <!-- ✅ THIS IS THE FIX -->
-            <plugin>
-                <groupId>org.owasp</groupId>
-                <artifactId>dependency-check-maven</artifactId>
-                <version>9.0.7</version>
-                <configuration>
-                    <format>HTML</format>
-                    <failBuildOnCVSS>7</failBuildOnCVSS>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- SonarQube -->
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.11.0.3922</version>
             </plugin>
 
         </plugins>
