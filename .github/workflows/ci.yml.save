@@ -73,6 +73,7 @@ jobs:
 
       - name: Deploy to AKS
         run: |
-          kubectl apply -f k8s/db.yml
-          kubectl apply -f k8s/petclinic.yml
-
+          - name: Deploy to AKS
+        run: |
+    kubectl apply -f k8s/db.yml
+    kubectl apply -f k8s/petclinic.yml
