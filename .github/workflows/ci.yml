@@ -73,5 +73,6 @@ jobs:
 
       - name: Deploy to AKS
         run: |
-          kubectl apply -f k8s/deployment.yml
-          kubectl apply -f k8s/service.yml
+          kubectl apply -f aks-terraform/k8s/deployment.yml
+          kubectl apply -f aks-terraform/k8s/service.yml
+
