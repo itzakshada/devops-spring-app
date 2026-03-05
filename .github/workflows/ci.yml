@@ -62,3 +62,16 @@ jobs:
           context: .
           push: true
           tags: akshadaacr.azurecr.io/rest-service-app:latest
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Set AKS context
+        run: az aks get-credentials --resource-group devops-aks-rg --name devops-aks
+
+      - name: Deploy to AKS
+        run: |
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml
