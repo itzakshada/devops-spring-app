@@ -77,7 +77,4 @@ jobs:
           kubectl apply -f k8s/petclinic.yml
           kubectl get pods
           kubectl get svc
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
