@@ -79,4 +79,4 @@ jobs:
           kubectl get svc
 
       - name:  Run CodeQL Scan
-        uses: github/codeql-actions/analyze@v3
+        uses: github/codeql-action/analyze@v3
