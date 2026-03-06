@@ -9,29 +9,23 @@ jobs:
   build-test-scan-docker-deploy:
     runs-on: ubuntu-latest
 
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-
     steps:
-      - name: Checkout Code
+      
+steps:
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      # ---- CodeQL MUST be initialized BEFORE the build, and analyzed AFTER the build ----
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
           languages: java
 
-      - name: Setup Java 17
-        uses: actions/setup-java@v3
-        with:
-          distribution: temurin
-          java-version: '17'
+      # If Autobuild fails for your project, replace this with your build commands (mvn/gradle)
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
 
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
       - name: Build + Test (JaCoCo)
         run: mvn -B clean test
 
@@ -54,7 +48,8 @@ jobs:
             -Dsonar.organization=itzakshada \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=$SONAR_TOKEN \
-            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xmlO
+
 
       - name: Login to ACR
         uses: docker/login-action@v3
@@ -88,6 +83,3 @@ jobs:
           kubectl get pods
           kubectl get svc
 
-      # ---- CodeQL Analyze goes AFTER build (and can be after deploy too, but init must be before build) ----
-      - name: Run CodeQL Scan
-        uses: github/codeql-action/analyze@v3
